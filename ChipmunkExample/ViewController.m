@@ -34,7 +34,7 @@ static NSString *borderType = @"borderType";
     tapRecognizer.numberOfTouchesRequired = 1;
     
     UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-    longPressRecognizer.minimumPressDuration = 0.5;
+    longPressRecognizer.minimumPressDuration = 0.1;
     
     [self.view addGestureRecognizer:tapRecognizer];
     [self.view addGestureRecognizer:longPressRecognizer];
@@ -54,7 +54,9 @@ static NSString *borderType = @"borderType";
                    layers:CP_ALL_LAYERS group:CP_NO_GROUP
             collisionType:borderType];
     
-    [self addNewObjectAtLocation:CGPointMake(100, 100)];
+//    for (int i = 0; i < 300; i++) {
+//        [self addNewObjectAtLocation:CGPointMake(100, 100)];
+//    }
     
     [self setupMultigrab];
     
@@ -77,7 +79,7 @@ static NSString *borderType = @"borderType";
 
 - (void)addNewObjectAtLocation:(CGPoint)location {
 
-    CGRect viewRect = CGRectMake(0, 0, 60, 60);
+    CGRect viewRect = CGRectMake(0, 0, 5, 5);
     UIView *view = [[UIView alloc] initWithFrame:CGRectNull];
     view.center = location;
     view.backgroundColor = [self randomColor];
@@ -143,16 +145,25 @@ static NSString *borderType = @"borderType";
 
 - (void)tap:(UITapGestureRecognizer *)gestureRecognizer {
 
+//    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+//        [self addNewObjectAtLocation:[gestureRecognizer locationInView:self.view]];
+//    }
+    
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        [self addNewObjectAtLocation:[gestureRecognizer locationInView:self.view]];
+        [self removeAllObjects];
     }
+
 }
 
 
 - (void)longPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        [self removeAllObjects];
+//    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+//        [self removeAllObjects];
+//    }
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+        [self addNewObjectAtLocation:[gestureRecognizer locationInView:self.view]];
     }
 }
 

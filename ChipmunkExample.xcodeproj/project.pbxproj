@@ -394,6 +394,8 @@
 		B0BD2A3B179FEFB3004FBE55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stanislav K (F47HF878SY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stanislav K (F47HF878SY)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChipmunkExample/ChipmunkExample-Prefix.pch";
 				INFOPLIST_FILE = "ChipmunkExample/ChipmunkExample-Info.plist";
@@ -402,6 +404,8 @@
 					"\"$(SRCROOT)/ChipmunkExample/ChipmunkPro-iPhone-Trial\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C8D068DA-CF48-4256-9033-E899910DA375";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C8D068DA-CF48-4256-9033-E899910DA375";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -409,6 +413,8 @@
 		B0BD2A3C179FEFB3004FBE55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Stanislav K (F47HF878SY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Stanislav K (F47HF878SY)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChipmunkExample/ChipmunkExample-Prefix.pch";
 				INFOPLIST_FILE = "ChipmunkExample/ChipmunkExample-Info.plist";
@@ -417,6 +423,8 @@
 					"\"$(SRCROOT)/ChipmunkExample/ChipmunkPro-iPhone-Trial\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C8D068DA-CF48-4256-9033-E899910DA375";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C8D068DA-CF48-4256-9033-E899910DA375";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -440,6 +448,7 @@
 				B0BD2A3C179FEFB3004FBE55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
