@@ -20,6 +20,7 @@ static NSString *borderType = @"borderType";
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, strong) ChipmunkHastySpace *space;
 @property (nonatomic, strong) ChipmunkMultiGrab *multiGrab;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 
 @end
 
@@ -54,10 +55,6 @@ static NSString *borderType = @"borderType";
                    layers:CP_ALL_LAYERS group:CP_NO_GROUP
             collisionType:borderType];
     
-//    for (int i = 0; i < 300; i++) {
-//        [self addNewObjectAtLocation:CGPointMake(100, 100)];
-//    }
-    
     [self setupMultigrab];
     
     self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
@@ -77,11 +74,14 @@ static NSString *borderType = @"borderType";
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
+#define SIDE_SIZE 20
 - (void)addNewObjectAtLocation:(CGPoint)location {
 
-    CGRect viewRect = CGRectMake(0, 0, 5, 5);
+    CGRect viewRect = CGRectMake(0, 0, SIDE_SIZE, SIDE_SIZE);
     UIView *view = [[UIView alloc] initWithFrame:CGRectNull];
     view.center = location;
+    view.layer.cornerRadius = viewRect.size.width/2;
+    view.layer.masksToBounds = NO;
     view.backgroundColor = [self randomColor];
     [self.view addSubview:view];
     [UIView animateWithDuration:0.3
@@ -90,6 +90,7 @@ static NSString *borderType = @"borderType";
                      }
                      completion:^(BOOL finished){
                          [self.space smartAdd:[[ChipmunkObject alloc] initWithView:view]];
+                         self.numberLabel.text = [NSString stringWithFormat:@"%i", [self.space.bodies count]];
                      }];
 }
 
@@ -109,6 +110,7 @@ static NSString *borderType = @"borderType";
                              }];
         }
     }
+    self.numberLabel.text = @"0";
 }
 
 
@@ -144,10 +146,6 @@ static NSString *borderType = @"borderType";
 
 
 - (void)tap:(UITapGestureRecognizer *)gestureRecognizer {
-
-//    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-//        [self addNewObjectAtLocation:[gestureRecognizer locationInView:self.view]];
-//    }
     
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         [self removeAllObjects];
@@ -158,10 +156,6 @@ static NSString *borderType = @"borderType";
 
 - (void)longPress:(UILongPressGestureRecognizer *)gestureRecognizer {
     
-//    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-//        [self removeAllObjects];
-//    }
-    
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         [self addNewObjectAtLocation:[gestureRecognizer locationInView:self.view]];
     }
@@ -171,11 +165,9 @@ static NSString *borderType = @"borderType";
 #pragma mark -
 #pragma mark Touches
 
-
 - (cpVect)convertTouch:(UITouch *)touch inView:(UIView *)view {
     
 	cpVect point = [touch locationInView:view];
-    
     return point;
 }
 

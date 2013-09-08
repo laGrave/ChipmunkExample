@@ -16,19 +16,18 @@
         
         _view = view;
         
-        CGFloat width   = _view.frame.size.width;
-        CGFloat height  = _view.frame.size.height;
+        CGFloat radius   = _view.frame.size.width/2;
         CGPoint position = _view.center;
         
         _view.center = CGPointZero;
         
         cpFloat mass = 1;
         ChipmunkBody *body = [[ChipmunkBody alloc] initWithMass:mass
-                                                      andMoment:cpMomentForBox(mass, width, height)];
+                                                      andMoment:cpMomentForCircle(mass, radius, 0, cpvzero)];
         body.pos = position;
         body.data = self;
         
-        ChipmunkPolyShape *shape = [[ChipmunkPolyShape alloc] initBoxWithBody:body width:width height:height];
+        ChipmunkCircleShape *shape = [[ChipmunkCircleShape alloc] initWithBody:body radius:radius offset:cpvzero];
         shape.elasticity = 1.0;
         shape.collisionType = [ChipmunkObject class];
         shape.data = self;

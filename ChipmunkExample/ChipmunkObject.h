@@ -13,7 +13,7 @@
 
 @property (readonly) NSArray *chipmunkObjects;
 @property (readonly) ChipmunkBody *body;
-@property (readonly) ChipmunkPolyShape *shape;
+@property (readonly) ChipmunkCircleShape *shape;
 @property (readonly) UIView *view;
 
 - (id)initWithView:(UIView *)view;
